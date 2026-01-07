@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID-19 Country Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>COVID-19 Country Tracker</h1>
+
+    <div class="search-box">
+        <input type="text" id="countryInput" placeholder="Enter country name">
+        <button onclick="searchCountry()">Search</button>
+    </div>
+
+    <div class="cards">
+        <div class="card confirmed">
+            <h3>Confirmed</h3>
+            <p id="cases">--</p>
+        </div>
+        <div class="card recovered">
+            <h3>Recovered</h3>
+            <p id="recovered">--</p>
+        </div>
+        <div class="card deaths">
+            <h3>Deaths</h3>
+            <p id="deaths">--</p>
+        </div>
+        <div class="card active">
+            <h3>Active</h3>
+            <p id="active">--</p>
+        </div>
+    </div>
+
+    <p id="error" class="error">Country not found</p>
+</div>
+
+<script>
+async function searchCountry() {
+    const country = document.getElementById("countryInput").value.trim();
+    if (!country) return;
+
+    try {
+        const res = await fetch(
+            `https://disease.sh/v3/covid-19/countries/${country}`
+        );
+        if (!res.ok) throw new Error();
+
+        const data = await res.json();
+
+        document.getElementById("cases").innerText = data.cases.toLocaleString();
+        document.getElementById("recovered").innerText = data.recovered.toLocaleString();
+        document.getElementById("deaths").innerText = data.deaths.toLocaleString();
+        document.getElementById("active").innerText = data.active.toLocaleString();
+
+        document.getElementById("error").style.display = "none";
+    } catch {
+        document.getElementById("error").style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    font-family: Segoe UI, sans-serif;
+    background: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 850px;
+}
+
+.container {
+    width: 900px;
+    text-align: center;
+}
+
+.search-box {
+    margin: 20px 0;
+}
+
+.search-box input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 6px;
+    border: none;
+}
+
+.search-box button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #6366f1;
+    color: white;
+    cursor: pointer;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.confirmed { 
+    background: #2563eb; 
+}
+.recovered { 
+    background: #16a34a; 
+}
+.deaths { 
+    background: #dc2626; 
+}
+.active { 
+    background: #ca8a04; 
+}
+
+.error {
+    margin-top: 15px;
+    color: #f87171;
+    display: none;
+}
